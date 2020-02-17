@@ -624,7 +624,8 @@ class ClassifierChain(MetaEstimatorMixin, ClassifierMixin, _BaseChain):
                 X_aug = sp.hstack((X, previous_predictions))
             else:
                 X_aug = np.hstack((X, previous_predictions))
-            Y_prob_chain[:, chain_idx] = estimator.predict_proba(X_aug)[:, 1]
+            Y_prob_chain[:, chain_idx] = estimator.predict_proba(X_aug)
+#            Y_prob_chain[:, chain_idx] = estimator.predict_proba(X_aug)[:, 1]
             Y_pred_chain[:, chain_idx] = estimator.predict(X_aug)
         inv_order = np.empty_like(self.order_)
         inv_order[self.order_] = np.arange(len(self.order_))
